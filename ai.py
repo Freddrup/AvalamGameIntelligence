@@ -65,7 +65,7 @@ def utility(_gameState):
 	for rows in _localGameState :
 		for piles in rows :
 			if len(piles) != 0 :
-				if piles[len(piles)-1] == 0 :
+				if piles[len(piles)-1] == 1 :
 					numberOfMyPiles += 1
 					numberOfPiles += 1
 					if len(piles) == 4 :
@@ -76,7 +76,7 @@ def utility(_gameState):
 					numberOfPiles += 1
 					numberOfOtherPiles+=1
 	try :
-		_utility = (numberOfMyPiles-numberOfOtherPiles)#*numOf4HighPiles
+		_utility = (numberOfMyPiles-numberOfOtherPiles)*((numOf4HighPiles+numberOfPiles)/numberOfPiles)*((numOf4HighPiles+numberOfPiles)/numberOfPiles)*((numOf5HighPiles+numberOfPiles)/numberOfPiles)
 	except ZeroDivisionError :
 		_utility = inf
 	except :
