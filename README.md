@@ -20,21 +20,21 @@ Ces codes nécéssitent également les librairies suivantes :
 
 ## Installation et lancement
 
-Afin de pouvoir faire fonctionner ce code, il suffit de cloner le repo dans un dossier, et éxécuter le document launcher.py avec python 3 depuis un terminal, avec comme argument optionnel le port de communication vers le serveur de jeu.
+Afin de pouvoir faire fonctionner ce code, il suffit de cloner le repo dans un dossier, et éxécuter le document *launcher.py* avec python 3 depuis un terminal, avec comme argument optionnel le port de communication vers le serveur de jeu.
 Exemple :
 
 ```
 AvalamGameIntelligence-master $ python3 launcher.py <port>
 ```
 
-La commande ^C arrête l'exécution.
+La commande *^C* arrête l'exécution.
 
 ## Explication des documents python
 
 ### launcher&#46;py <port>
 
 Ce document sert à lancer le programme. L'argument <port> optionnel permet de spécifier un port à utiliser par  "AvalamGameIntelligence", sinon le port 8008 sera utilisé.
-Les variables "subPort" ,"name", "matricules" et "supervisorHost" peuvent être modifiés et ont cet effet :
+Les variables "subPort" ,"name", "matricules" et "supervisorHost" peuvent être modifiées et ont cet effet :
 
 - "subPort" : le port entrant de [AIGameRunner](https://github.com/ECAM-Brussels/AIGameRunner) qui gère les inscriprions (3001 par défaut)
 - "name" : modifie le nom affiché sur le serveur généré par [AIGameRunner](https://github.com/ECAM-Brussels/AIGameRunner)
@@ -47,7 +47,7 @@ Ce document gère l'inscription auprès de [AIGameRunner](https://github.com/ECA
 
 ### server&#46;py
 
-Ce document s'occupe de recevoir les données de [AIGameRunner](https://github.com/ECAM-Brussels/AIGameRunner), de les interpréter, et de renvoyer un JSON contenant le cooup à faire, préalablement décidé par l'intelligence artificielle.
+Ce document s'occupe de recevoir les données de [AIGameRunner](https://github.com/ECAM-Brussels/AIGameRunner), de les interpréter, et de renvoyer un JSON contenant le coup à faire, préalablement décidé par l'intelligence artificielle.
 
 ### serverRandom&#46;py
 
@@ -72,8 +72,8 @@ Le fonctionnement de l'algorithme minimax ne sera pas expliqué ici, car [d'autr
 ##### actions(_gamestate)
 
 Cette fonction renvoie une liste de tout les coups possibles, en fonction de l'état du jeu. C'est elle qui, en quelque sorte, contient les règles du jeu. 
-Elle parcoure toutes les piles sur le tableau, regarde si leur hauteur est inférieure à 5 et si il y a un ou plusieurs voisins sur les cases à coté, dont la hauteur ne dépasse pas (5 moins la hauteur de la pile actuelle).
-Ensuite elle revoie une liste contenant les déplacement sous le format
+Elle parcoure toutes les piles sur le tableau, regarde si leur hauteur est inférieure à 5 et si il y a un ou plusieurs voisins sur les cases à coté, dont la hauteur ne dépasse pas {5 moins la hauteur de la pile actuelle}.
+Ensuite elle revoie une liste contenant les déplacement sous le format :
 
 ```
 [fromX, fromY, toX, toY]
@@ -81,36 +81,36 @@ Ensuite elle revoie une liste contenant les déplacement sous le format
 
 ##### gameIsOver(_gamestate)
 
-Renvoie vrai si aucun mouvement n'est possible, en regardant si ce que renvoie actions(_gamestate) est vide. Si ce que renvoie actions(_gamestate) contient quelque chose, ça veut dire qu'il y a encore moyen de faire des coups, et que le jeu n'est pas terminé.
+Renvoie vrai si aucun mouvement n'est possible, en regardant si ce que renvoie *actions(_gamestate)* est vide. Si ce que renvoie *actions(_gamestate)* contient quelque chose, ça veut dire qu'il y a encore moyen de faire des coups, et que le jeu n'est pas terminé.
 
 ##### result(_gamestate, _action)
 
-Renvoie un état de tableau généré à partir de l'état actuel "_gamestate", en suivant le déplacement spécifié par_action.
+Renvoie un état de tableau généré à partir de l'état actuel "_gamestate", en suivant le déplacement spécifié par "_action".
 
 ##### utility(_gamestate)
 
 Revoie une valeur d'utilité calculée à partir de plusieurs éléments :
 
-- Nombre de piles de couleur du jouer
+- Nombre de piles de couleur du joueur
 - Nombre de piles de couleur de l'adversaire
 - Nombre de piles totales
-- Nombres de piles de couleur du jouer avec comme hauteur = 4
-- Nombres de piles de couleur du jouer avec comme hauteur = 5
+- Nombres de piles de couleur du joueur avec comme hauteur = 4
+- Nombres de piles de couleur du joueur avec comme hauteur = 5
 
 Une formule calcule ensuite une valeur en fonction de ces paramètres.
 __Ceci est la stratégie de jeu de l'IA__
 
 #### Un autre détail
 
-Comme au début du jeu le nombre de possibilités est élevé, ça prendrait trop de temps de calculer un choix à 3 coups ou plus à l'avance. Donc, avant de lancer l'IA, server&#46;py calcule le nombre de coups avec <ia&#46;actions(gameState)>. Si le nombre d'actions possible est supérieur à 40, le paramère de profondeur de recherche de l'IA vaudra 2, sinon il est augmenté à 5.
+Comme au début du jeu le nombre de possibilités est élevé, ça prendrait trop de temps de calculer un choix à 3 coups ou plus à l'avance. Donc, avant de lancer l'IA, *server&#46;py* calcule le nombre de coups avec *ia&#46;actions(gameState)*. Si le nombre d'actions possible est supérieur à 40, le paramètre de profondeur de recherche de l'IA vaudra 2, sinon il est augmenté à 5.
 
 ## Améliorations
 
-Afin de rendre l'IA plus performante, lusieurs éléments peuvent être améliorés :
+Afin de rendre l'IA plus performante, plusieurs éléments peuvent être améliorés :
 
 - Choisir une profondeur de recherche selon une courbe plus lisse, plutôt que de passe de 2 à 5 en un coup.
-- Optimiser la vitesse lors du calcul d'actions possibles
-- Utiliser une IA basée sur un système neuronal, entrainé par un algorithme d'entrainement génétique. (Ceci prend du temps à améliorer, mais est pratiquement imbattable une fois entrainé correctement)
+- Optimiser la vitesse lors du calcul d'actions possibles.
+- Utiliser une IA basée sur un système neuronal, entrainé par un algorithme d'entrainement génétique. (Ceci prend du temps à améliorer, mais est pratiquement imbattable une fois entrainé correctement).
 - Commencer à bosser sur ce projet plus tôt :)
 
 ## Sources
