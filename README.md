@@ -21,6 +21,8 @@ Exemple :
 ```
 AvalamGameIntelligence-master $ python3 launcher.py <port>
 ```
+
+La commande ^C arrête l'exécution.
 # Explication des documents python
 
 ### launcher&#46;py <port>
