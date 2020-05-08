@@ -48,7 +48,7 @@ def utility(_gamestate):
 ```
 
 # Stratégie & fonctionnement
-*un schéma bloc au format JPEG se trouve également dans ce repo*
+*un schéma bloc au format PDF se trouve également dans ce repo*
 La stratégie de jeu consiste à maximiser "notre" nombre de pions visibles (en haut des piles), tout en minimisant les pions visibles de l'adversaire.
 Le fonctionnement de l'algorithme minimax ne sera pas expliqué ici, car [d'autres sites](https://en.wikipedia.org/wiki/Alpha–beta_pruning) l'expliquent mieux. Néanmoins le fonctionnement de certaines fonction peut être intéressant à détailler.
 ##### actions(_gamestate)
