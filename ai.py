@@ -76,7 +76,7 @@ def utility(_gameState):
 					numberOfPiles += 1
 					numberOfOtherPiles+=1
 	try :
-		_utility = (numberOfMyPiles-numberOfOtherPiles)*((numOf4HighPiles+numberOfPiles)/numberOfPiles)*((numOf4HighPiles+numberOfPiles)/numberOfPiles)*((numOf5HighPiles+numberOfPiles)/numberOfPiles)
+		_utility = (numberOfMyPiles-numberOfOtherPiles)*((numOf4HighPiles+numberOfPiles)/numberOfPiles)*((numOf4HighPiles+numberOfPiles)/numberOfPiles)*((numOf5HighPiles+numberOfPiles)/numberOfPiles)*(numberOfPiles/numberOfOtherPiles)
 	except ZeroDivisionError :
 		_utility = inf
 	except :
