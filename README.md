@@ -5,7 +5,7 @@ This repo contains a project for a course, and will be explained in French.
 
 Réalisé par Frédéric Druppel (18053)
 
-# Prérequis 
+## Prérequis 
 
 Les codes python trouvés dans ce repo sont conçus pour fonctionner avec [AIGameRunner](https://github.com/ECAM-Brussels/AIGameRunner), et plus spécifiquement "Avalam".
 Ces codes nécéssitent également les librairies suivantes :
@@ -18,7 +18,7 @@ Ces codes nécéssitent également les librairies suivantes :
 - socket
 - json
 
-# Installation et lancement
+## Installation et lancement
 
 Afin de pouvoir faire fonctionner ce code, il suffit de cloner le repo dans un dossier, et éxécuter le document launcher.py avec python 3 depuis un terminal, avec comme argument optionnel le port de communication vers le serveur de jeu.
 Exemple :
@@ -29,7 +29,7 @@ AvalamGameIntelligence-master $ python3 launcher.py <port>
 
 La commande ^C arrête l'exécution.
 
-# Explication des documents python
+## Explication des documents python
 
 ### launcher&#46;py <port>
 
@@ -62,7 +62,7 @@ def utility(_gamestate):
 ...
 ```
 
-# Stratégie & fonctionnement
+## Stratégie & fonctionnement
 
 *un schéma bloc au format PDF se trouve également dans ce repo*
 La stratégie de jeu consiste à maximiser "notre" nombre de pions visibles (en haut des piles), tout en minimisant les pions visibles de l'adversaire.
@@ -103,7 +103,7 @@ __Ceci est la stratégie de jeu de l'IA__
 
 Comme au début du jeu le nombre de possibilités est élevé, ça prendrait trop de temps de calculer un choix à 3 coups ou plus à l'avance. Donc, avant de lancer l'IA, server&#46;py calcule le nombre de coups avec <ia&#46;actions(gameState)>. Si le nombre d'actions possible, le paramère de profondeur de recherche de l'IA vaudra 2, sinon il est augmenté à 5.
 
-# Améliorations
+## Améliorations
 
 Afin de rendre l'IA plus performante, lusieurs éléments peuvent être améliorés :
 
@@ -112,12 +112,12 @@ Afin de rendre l'IA plus performante, lusieurs éléments peuvent être amélior
 - Utiliser une IA basée sur un système neuronal, entrainé par un algorithme d'entrainement génétique. (Ceci prend du temps à améliorer, mais est pratiquement imbattable une fois entrainé correctement)
 - Commencer à bosser sur ce projet plus tôt :)
 
-# Sources
+## Sources
 
 - [Artificial Intelligence: A Modern Approach (Third Edition) -- Stuart RUSSELL, Peter NORVIG, 2010](http://aima.cs.berkeley.edu), (surtout le chapitre 5)
 - [Alpha-Beta pruning - Wikipedia](https://en.wikipedia.org/wiki/Alpha–beta_pruning)
 - Cours de dévloppement informatique 2BA à L'ECAM Brussels Engineering School, donné par monsieur [Quentin LURKIN](https://www.linkedin.com/in/qlurkin/)
-- Conseils de [Sébastien d'OREYE](https://www.linkedin.com/in/sébastien-d-oreye-716283a8/), chercheur au CERDECAM
+- Conseils de monsieur [Sébastien d'OREYE](https://www.linkedin.com/in/sébastien-d-oreye-716283a8/), chercheur au CERDECAM
 
 Made with ❤️, lots of ☕️, and lack of 🛌
 Publié sous CreativeCommons BY-NC-SA 4.0
