@@ -93,7 +93,7 @@ Afin de rendre l'IA plus performante, lusieurs éléments peuvent être amélior
 - Cours de dévloppement informatique 2BA à L'ECAM Brussels Engineering School, donné par monsieur [Quentin LURKIN](https://www.linkedin.com/in/qlurkin/)
 - Conseils de [Sébastien d'OREYE](https://www.linkedin.com/in/sébastien-d-oreye-716283a8/), chercheur au CERDECAM
 
-Made with ❤️, lots of ☕️, and lack of  🛌
+Made with ❤️, lots of ☕️, and lack of 🛌
 Publié sous CreativeCommons BY-NC-SA 4.0
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
