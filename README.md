@@ -102,7 +102,7 @@ __Ceci est la stratégie de jeu de l'IA__
 
 #### Un autre détail
 
-Comme au début du jeu le nombre de possibilités est élevé, ça prendrait trop de temps de calculer un choix à 3 coups ou plus à l'avance. Donc, avant de lancer l'IA, server&#46;py calcule le nombre de coups avec <ia&#46;actions(gameState)>. Si le nombre d'actions possible, le paramère de profondeur de recherche de l'IA vaudra 2, sinon il est augmenté à 5.
+Comme au début du jeu le nombre de possibilités est élevé, ça prendrait trop de temps de calculer un choix à 3 coups ou plus à l'avance. Donc, avant de lancer l'IA, server&#46;py calcule le nombre de coups avec <ia&#46;actions(gameState)>. Si le nombre d'actions possible est supérieur à 40, le paramère de profondeur de recherche de l'IA vaudra 2, sinon il est augmenté à 5.
 
 ## Améliorations
 
