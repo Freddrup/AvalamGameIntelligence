@@ -1,3 +1,11 @@
+######################################################
+#
+# This code was mainly used for testing purposes, so
+# I didn't bother commenting it too much. Sorry for
+# the inconveniences this may cause.
+#
+######################################################
+
 import cherrypy
 import sys
 import random

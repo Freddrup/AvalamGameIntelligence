@@ -1,3 +1,12 @@
+###################################################################
+#
+# This code is a classic alpha-beta search algorithm 
+# (same routines as MINIMAX), based on an example in chapter 5 of
+# "Artificial Intelligence: A Modern Approach (3rd edit)" 
+# - Stuart RUSSEL, Peter NORVIG, 2010.
+#
+###################################################################
+
 from math import inf
 import pickle
 
@@ -42,7 +51,10 @@ def minValue(_gameState, alpha, beta, depth) :
 		beta = min(beta, answer[1])
 	return answer
 
-def utility(_gameState): # HEURISTIC FUNCTION : return value dependent of the state of the game. This is the whole reason why this algorithm works.
+# HEURISTIC FUNCTION : return value dependent of the state of the game.
+# This is the whole reason why this algorithm works, and could
+# be greatly improved and optimised.
+def utility(_gameState): 
 	_localGameState = _gameState
 	
 	numberOfPiles = 0
@@ -65,16 +77,16 @@ def utility(_gameState): # HEURISTIC FUNCTION : return value dependent of the st
 					numberOfOtherPiles+=1
 	try :
 		_utility = (numberOfMyPiles-numberOfOtherPiles)#*numOf4HighPiles
-
 	except ZeroDivisionError :
 		_utility = inf
 	except :
 		pass
-	#print(_whoIAm)
-	#print(numberOfMyPiles)
 	return _utility
 
-def actions(_gameState): # Returns a list of all possible moves, dependent on the current gamestate.
+# Returns a list of all possible moves, dependent on the current gamestate.
+# Note : If some value names seem weird, it's because I used the code of
+# ServerRandom.py, and didn't have the time to adapt the value names.
+def actions(_gameState): 
 	_localGameState = _gameState
 	moves = []
 
@@ -127,7 +139,8 @@ def actions(_gameState): # Returns a list of all possible moves, dependent on th
 
 	return moves # list of possible moves, with [fromX, fromY, toX, toY].
 
-def result(_gameState, action) : #  Creates a new state list of the game after an action has taken place. 
+# Creates a new state list of the game after an action has taken place. 
+def result(_gameState, action) :
 	_localGameState = pickle.loads(pickle.dumps(_gameState))
 	fromX = action[0]
 	fromY = action[1]
@@ -140,12 +153,11 @@ def result(_gameState, action) : #  Creates a new state list of the game after a
 			_localGameState[fromY][fromX] = []
 	return _localGameState
 
-def gameIsOver(_gameState) : # returns true if no possible moves exists, otherwise returns false
+# Returns true if no possible moves exists, otherwise returns false
+def gameIsOver(_gameState) :
 	_localGameState = _gameState
 	if actions(_localGameState) :
 		return False
 	return True
 
-def constrain(val, min_val, max_val):
-	return min(max_val, max(min_val, val))
 

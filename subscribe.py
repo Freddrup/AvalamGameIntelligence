@@ -1,3 +1,12 @@
+######################################################
+#
+# This code is run one time on start, in order to
+# subscribe to the game supervisor (to be able to
+# play). I know it's a bit subjective, but the code
+# is pretty self-explanatory.
+#
+######################################################
+
 import socket
 import json
 
@@ -24,7 +33,5 @@ def subscribeToSupervisor(_name, _matricules, _supervisorHost, _myport, _subport
 	playerDict["port"] = _myport
 	sendJSON(s, playerDict)
 	print("subscription sent")
-	# data = s.recv(1024)
 	s.close()
-	# print('Received', repr(data))
 

@@ -1,3 +1,13 @@
+######################################################
+#
+# This code handles all the requests from the game 
+# supervisor, defines what player it is playing (0 or
+# 1), decides at which depth the AI needs to stop 
+# searching, and requests the AI to find the best 
+# possible move.
+#
+######################################################
+
 import cherrypy
 import sys
 import random
@@ -17,14 +27,7 @@ gameState = {
 		[ [], [1], [0], [1], [0], [1],  [],  [],  []],
 		[ [],  [],  [],  [], [1], [0],  [],  [],  []]
 	],
-	"moves": [
-		{#exemple type :
-			"move": {
-				"from": [0, 3],
-				"to": [1, 4]
-			},
-			"message": "I'm Smart"
-		}],
+	"moves": [],
 	"players": ["LUR", "LRG"],
 	"you": "LUR"
 }
@@ -44,15 +47,13 @@ class Server:
 
 		body = cherrypy.request.json
 		print(body)
-		### Do The thinking here ###
+		### It get's a bit interesting at this point ###
 		gameState = []
-		unchanged = []
 		gameState = body["game"]
-		
+		unchanged = copy.deepcopy(gameState)
 		print("I GOT SOMETHING")
-		#Flip the player color if the AI is the second player, so the AI always gets the case that it plays as "color 0"
-
 		
+		#Flip the player color if the AI is the second player, so the AI always gets the case that it plays as "color 0"
 		print(gameState)
 		if body["you"] == body["players"][1] :
 			for y in range(len(gameState)) :
@@ -60,13 +61,8 @@ class Server:
 					for e in range(len(gameState[y][x])):
 						gameState[y][x][e] = 1-gameState[y][x][e]
 
-
-
-		unchanged = copy.deepcopy(gameState)
-		#print(self.actions(gameState))
 		print("############################")
-		#print(self.actions(unchanged))
-		#run the AI, which returns a path
+		# Decide at which depth the AI needs to stop digging
 		depth = 1
 		if len(ai.actions(gameState)) > 40 :
 			depth = 2
@@ -74,24 +70,28 @@ class Server:
 			depth = 5
 
 		print(depth)
+		# Run the AI, which returns a path
 		path = ai.alphaBetaSearch(gameState, depth)
 		print("AI ran")
 		print(gameState)
 		print(unchanged)
-		#print(ai.actions(gameState))
+
+		# Handle teapot errors (error if the server gives a game state 
+		# with no possible moves, or the ai.actions(gameState) function
+		# is broken). this aways gives a bad move.
 		if not path :
 			if ai.actions(unchanged) :
 				path = ai.actions(unchanged)[0]
 			else :
 				print("TEAPOT ERROR")
-				return {"move": {"from": [], "to": []}, "message": "Game seems to be over, or I'm a teapot, both are possible."}
+				return {"move": {"from": [0,0], "to": [0,0]}, "message": "Game seems to be over, or I'm a teapot, both are possible."}
 		print(path)
 		chosenItemOldX = path[0]
 		chosenItemOldY = path[1]
 		chosenItemNewX = path[2]
 		chosenItemNewY = path[3]
 		
-		############################
+		# Send chosen move to game supervisor
 		return {"move": {"from": [chosenItemOldY, chosenItemOldX], "to": [chosenItemNewY, chosenItemNewX]}}
 
 	@cherrypy.expose
