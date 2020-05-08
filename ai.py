@@ -26,7 +26,7 @@ def maxValue(_gameState, alpha, beta, depth) :
 	for a in actions(_localGameState) :
 		answer[1] = max(answer[1], minValue(result(_localGameState, a), alpha, beta, depth-1)[1])
 		if answer[1] >= beta :
-			print("PRUNED BETA")
+			#print("PRUNED BETA")
 			#print(depth)
 			answer[0] = a
 			return answer
@@ -44,7 +44,7 @@ def minValue(_gameState, alpha, beta, depth) :
 	for a in actions(_localGameState) :
 		answer[1] = min(answer[1], maxValue(result(_localGameState, a), alpha, beta, depth-1)[1])
 		if answer[1] <= alpha :
-			print("PRUNED ALPHA")
+			#print("PRUNED ALPHA")
 			#print(depth)
 			answer[0] = a
 			return answer
